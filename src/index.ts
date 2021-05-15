@@ -1,3 +1,5 @@
+import { detectAxisMovement } from './utils/gamepad.js';
+
 interface Context {
 	input: Gamepad[];
 }
@@ -35,16 +37,13 @@ class Engine {
 
 		this.counter++;
 
-		if (ctx.input[0] && ctx.input[0].axes[0] !== 0) {
-			console.log(ctx.input[0].axes[0]);
+		if (ctx.input[0]) {
+			const pad = ctx.input[0];
+			const horizontalMovement = detectAxisMovement(pad, 'left', 'horizontal');
+			const verticalMovement = detectAxisMovement(pad, 'left', 'vertical');
 
-			this.pos.x += ctx.input[0].axes[0];
-		}
-
-		if (ctx.input[0] && ctx.input[0].axes[1] !== 0) {
-			console.log(ctx.input[0].axes[1]);
-
-			this.pos.y += ctx.input[0].axes[1];
+			this.pos.x += horizontalMovement;
+			this.pos.y += verticalMovement;
 		}
 	}
 }
