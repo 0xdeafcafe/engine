@@ -2,8 +2,6 @@ export function detectAxisMovement(pad: Gamepad, stick: 'left' | 'right', direct
 	const axisIdx = getAxesIndex(stick, direction);
 	const value = pad.axes[axisIdx];
 
-	console.log(axisIdx);
-
 	if (value > 0.1 || value < -0.1)
 		return value;
 
