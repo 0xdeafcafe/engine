@@ -1,4 +1,6 @@
 import { detectAxisMovement } from './utils/gamepad.js';
+import Input from './input.js';
+import InputContext from './input.js';
 
 interface Context {
 	input: Gamepad[];
@@ -8,12 +10,14 @@ class Engine {
 	private canvas: HTMLCanvasElement;
 	private context: CanvasRenderingContext2D;
 	private counter = 0;
+	private input: Input;
 
 	private pos = { x: 0, y: 0 };
 
 	constructor() {
 		this.canvas = document.querySelector('#sick-canvas');
 		this.context = this.canvas.getContext('2d');
+		this.input = new Input()
 
 		window.requestAnimationFrame(time => this.step(time));
 	}
@@ -37,14 +41,10 @@ class Engine {
 
 		this.counter++;
 
-		if (ctx.input[0]) {
-			const pad = ctx.input[0];
-			const horizontalMovement = detectAxisMovement(pad, 'left', 'horizontal');
-			const verticalMovement = detectAxisMovement(pad, 'left', 'vertical');
+		var i = this.input.read()
 
-			this.pos.x += horizontalMovement;
-			this.pos.y += verticalMovement;
-		}
+		this.pos.x += i.x1
+		this.pos.y += i.y1
 	}
 }
 
