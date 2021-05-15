@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"outDir": "./dist",
+		"target": "esnext"
+	},
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.json",
+	]
+}

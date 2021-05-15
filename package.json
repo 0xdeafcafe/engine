@@ -1,0 +1,12 @@
+{
+	"name": "engine",
+	"dependencies": { },
+	"scripts": {
+		"build": "tsc",
+		"postbuild": "cp ./src/index.html ./dist/index.html",
+		"watch": "tsc --watch"
+	},
+	"devDependencies": {
+		"typescript": "^4.2.4"
+	}
+}
